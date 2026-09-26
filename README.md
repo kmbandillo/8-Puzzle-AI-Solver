@@ -1,6 +1,6 @@
 # 8-Puzzle Solver with Pygame GUI
 
-An interactive 8-Puzzle game and AI solver developed in Python. The application allows users to manually solve the puzzle or utilize search algorithms **Breadth-First Search (BFS)**, **Depth-First Search (DFS)**, and **A\* Search**.  It displays the path cost, explored states, and step-by-step solution moves.
+#### An interactive 8-Puzzle game and AI solver developed in Python. The application allows users to manually solve the puzzle or utilize search algorithms **Breadth-First Search (BFS)**, **Depth-First Search (DFS)**, and **A\* Search**.  It displays the path cost, explored states, and step-by-step solution moves.
 ---
 
 ## Features
