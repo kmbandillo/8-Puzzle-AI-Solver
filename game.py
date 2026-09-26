@@ -37,7 +37,7 @@ def draw_background(color):
     # 8-puzzle with an even number of inversion in its input state is solvable
 
 def inversion_counter(s):
-    # Convert 2D array into a 1D array omitting 0 values
+    # convert 2D array into a 1D array omitting 0 values
     array_values = [tile for row in s for tile in row if tile != 0]
     inversions = 0
 
@@ -187,7 +187,7 @@ def BFSearch(initial_state):
     return None
 # return None if there is no solution
 
-# DFS Algorithm to search for the shortest pathcost. It behaves like a 
+# DFS Algorithm
 def DFSearch(initial_state, depth_limit=200):
     frontier = []
     frontier.append((initial_state, []))
@@ -248,6 +248,7 @@ def getMinF(openList):
     # returns the min_node
     return min_node 
 
+# A* Algorithm
 def AStar(initial_state):
     openList = [Node(initial_state)]
     closedList = []
@@ -257,16 +258,16 @@ def AStar(initial_state):
         openList.remove(bestNode)
         closedList.append(bestNode)
         explored_states += 1 
-        if GoalTest(bestNode.state):  # Implement GoalTest for your specific problem
-            # Build and return the sequence of actions from the initial state to the goal state
+        if GoalTest(bestNode.state): 
+            # build and return the sequence of actions from the initial state to the goal state
             actions = []
             while bestNode.parent is not None:
                 actions.insert(0, bestNode.action)
                 bestNode = bestNode.parent
             return actions, explored_states
         
-        for action in Actions(bestNode.state):  # Implement Actions for your specific problem
-            child_state = Result(bestNode.state, action)  # Implement Result for your specific problem
+        for action in Actions(bestNode.state):  
+            child_state = Result(bestNode.state, action) 
             child_g = bestNode.g + 1
 
             child_node = Node(child_state, child_g, bestNode, action)
@@ -316,13 +317,13 @@ def output(actions):
             file.write(f"{action} ")
 
 def move_step(action, current_state):
-    new_state = Result(current_state, action)  #apply the action to the current state
+    new_state = Result(current_state, action)  # apply the action to the current state
     draw_tiles(new_state)  # replace 'draw_grid' with your grid rendering function
     pygame.display.update()
     return new_state
 
 
-# Solution info tracking
+# solution info tracking
 solution_info = {
     "has_run": False,
     "has_solution": False,
@@ -360,7 +361,7 @@ def draw_solution(screen):
     box_w = 360
     box_h = 84
 
-    # Draw themed container matching the buttons/tiles
+    # draw themed container matching the buttons/tiles
     pygame.draw.rect(screen, "mistyrose1", [box_x, box_y, box_w, box_h], border_radius=6)
     pygame.draw.rect(screen, "lightpink3", [box_x, box_y, box_w, box_h], width=1, border_radius=6)
 
@@ -390,7 +391,6 @@ def draw_solution(screen):
     max_scroll = max(0, total_content_h - visible_h)
     solution_info["max_scroll"] = max_scroll
 
-    # Clamp scroll_y
     solution_info["scroll_y"] = max(0, min(max_scroll, solution_info["scroll_y"]))
 
     content_clip_rect = pygame.Rect(box_x + 2, box_y + 4, box_w - 4, box_h - 8)
@@ -402,7 +402,7 @@ def draw_solution(screen):
 
     screen.set_clip(None)
 
-    # Scrollbar indicator if content exceeds visible area
+    # scrollbar indicator if content exceeds visible area 
     if max_scroll > 0:
         bar_x = box_x + box_w - 9
         bar_y = box_y + 7
@@ -415,7 +415,7 @@ def draw_solution(screen):
 # check if the file exists
 actions_str = [] 
 STEP_DELAY = 1.0 # delays the movement of a tile
-# Function to handle the "Next" button click
+# function to handle the "Next" button click
 next_button_clicked = False
 def next_button():
     if b_clicked or d_clicked or a_clicked:
